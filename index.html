@@ -20,7 +20,9 @@
 	
 	// Asynchronous download PDF
 	PDFJS.getDocument(url)
-	.then(function(page) {
+	.then(function(pdf) {
+    return pdf.getPage(1);
+	}).then(function(page) {
 
   // Set scale (zoom) level
   var scale = 1;
