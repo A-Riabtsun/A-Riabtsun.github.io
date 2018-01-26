@@ -11,25 +11,26 @@
 <script type="text/javascript">
     PDFJS.workerSrc = "./js/pdf.worker.js";
 </script>
-	<script type="text/javascript">
-// URL of PDF document
-var url = "./pdf/portfolio.pdf";
 
-// Asynchronous download PDF
-PDFJS.getDocument(url)
-  .then(function(pdf) {
+<script type="text/javascript">
+	// URL of PDF document
+	var url = "./pdf/portfolio.pdf";
+
+	// Asynchronous download PDF
+	PDFJS.getDocument(url)
+	.then(function(pdf) {
     return pdf.getPage(1);
-  })
-  .then(function(page) {
+	})
+	.then(function(page) {
     // Set scale (zoom) level
     var scale = 1;
 
     // Get viewport (dimensions)
     var viewport = page.getViewport(scale);
 
-    // Get canvas#the-canvas
-    var canvas = document.getElementById('the-canvas');
-
+	// Get div#the-svg
+	var container = document.getElementById('the-svg');
+  
     // Fetch canvas' 2d context
     var context = canvas.getContext('2d');
 
@@ -37,21 +38,21 @@ PDFJS.getDocument(url)
     canvas.height = viewport.height;
     canvas.width = viewport.width;
 
-    // Prepare object needed by render method
-    var renderContext = {
-      canvasContext: context,
-      viewport: viewport
-    };
+	  // SVG rendering by PDF.js
+	page.getOperatorList()
+    .then(function (opList) {
+      var svgGfx = new PDFJS.SVGGraphics(page.commonObjs, page.objs);
+      return svgGfx.getSVG(opList, viewport);
+    })
+    .then(function (svg) {
+      container.appendChild(svg);
+    });
 
-    // Render PDF page
-    page.render(renderContext);
-  });
+});
 </script>
 
-	
-	<canvas id="the-canvas"></canvas>
-	
+	<div id="the-svg"></div>
 
-	</body>
+</body>
 </html>
 
