@@ -2,56 +2,25 @@
 <html>
 <head>
 	<link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="./css/main.css">
+
 	<title>Alexandra Riabtsun's Portfolio</title>
 </head>
 <body>
 
-<script src="./js/pdf.js"></script>
+<div class="holder">
+  <img src="./img/portfolio.png"
+     alt="Alexandra Riabtsun's Portfolio"
+     title="Alexandra Riabtsun's Portfolio"/>
 
-<script type="text/javascript">
-    PDFJS.workerSrc = "./js/pdf.worker.js";
-</script>
-
-<script type="text/javascript">
-	// URL of PDF document
-	var url = "./pdf/portfolio.pdf";
-
-	
-	
-	// Asynchronous download PDF
-	PDFJS.getDocument(url)
-	.then(function(pdf) {
-    return pdf.getPage(1);
-	}).then(function(page) {
-
-  // Set scale (zoom) level
-  var scale = 1;
-
-  // Get viewport (dimensions)
-  var viewport = page.getViewport(scale);
-
-  // Get div#the-svg
-  var container = document.getElementById('the-svg');
-
-  // Set dimensions
-  container.style.width = viewport.width + 'px';
-  container.style.height = viewport.height + 'px';
-
-  // SVG rendering by PDF.js
-  page.getOperatorList()
-    .then(function (opList) {
-      var svgGfx = new PDFJS.SVGGraphics(page.commonObjs, page.objs);
-      return svgGfx.getSVG(opList, viewport);
-    })
-    .then(function (svg) {
-      container.appendChild(svg);
-    });
-
-});
-</script>
-
-	<div id="the-svg"></div>
+    <a href="http://zelen.webflow.io/" id="zelen-url">http://zelen.webflow.io/</a>
+    <a href="https://goo.gl/oPzcgH" id="composition-url">https://goo.gl/oPzcgH</a>
+    <a href="https://goo.gl/WojsQR" id="device-ui-url">https://goo.gl/WojsQR</a>
+    <a href="https://goo.gl/YqiiSi" id="infographics-url">https://goo.gl/YqiiSi</a>
+</div>
 
 </body>
+<footer>
+</footer>
 </html>
 
