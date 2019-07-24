@@ -1,4 +1,5 @@
-.holder {position: relative;
+.holder {
+	position:relative;
 	}
     
 img {
@@ -12,10 +13,10 @@ a {
 }
 
 #zelen-url {
-	top:11.5%;
+	top:1%;
       }
 
 
 #device-ui-url {
-      	top:20.6%;
+      	top:2%;
       }
